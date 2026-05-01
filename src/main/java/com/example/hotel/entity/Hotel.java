@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Hotel {
@@ -15,6 +17,11 @@ public class Hotel {
     private String city;
     private String address;
     private Double pricePerNight;
+    private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "agent_id")
+    private Admin agent;
 
     public Long getId() {
         return id;
@@ -54,5 +61,21 @@ public class Hotel {
 
     public void setPricePerNight(Double pricePerNight) {
         this.pricePerNight = pricePerNight;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Admin getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Admin agent) {
+        this.agent = agent;
     }
 }

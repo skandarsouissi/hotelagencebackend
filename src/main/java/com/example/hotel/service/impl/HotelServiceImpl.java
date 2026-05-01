@@ -19,6 +19,8 @@ public class HotelServiceImpl implements HotelService {
 
     public List<Hotel> findAll() { return repository.findAll(); }
 
+    public List<Hotel> findByAgentId(Long agentId) { return repository.findByAgentId(agentId); }
+
     public Hotel findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Hotel not found: " + id));
     }
@@ -31,8 +33,15 @@ public class HotelServiceImpl implements HotelService {
         existing.setCity(hotel.getCity());
         existing.setAddress(hotel.getAddress());
         existing.setPricePerNight(hotel.getPricePerNight());
+        existing.setAgent(hotel.getAgent());
         return repository.save(existing);
     }
 
     public void delete(Long id) { repository.delete(findById(id)); }
+
+    public Hotel updateImage(Long id, String imageUrl) {
+        Hotel existing = findById(id);
+        existing.setImageUrl(imageUrl);
+        return repository.save(existing);
+    }
 }

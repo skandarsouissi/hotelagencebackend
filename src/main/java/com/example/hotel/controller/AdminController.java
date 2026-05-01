@@ -26,6 +26,9 @@ public class AdminController {
     @GetMapping
     public List<Admin> findAll() { return service.findAll(); }
 
+    @GetMapping("/agents")
+    public List<Admin> findAgents() { return service.findAgents(); }
+
     @GetMapping("/{id}")
     public Admin findById(@PathVariable Long id) { return service.findById(id); }
 

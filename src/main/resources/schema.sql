@@ -1,3 +1,1 @@
-CREATE TABLE IF NOT EXISTS bootstrap_marker (
-	id INT PRIMARY KEY
-);
+

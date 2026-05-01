@@ -10,4 +10,5 @@ public interface ClientService {
     Client create(Client client);
     Client update(Long id, Client client);
     void delete(Long id);
+    Client login(String email, String password);
 }

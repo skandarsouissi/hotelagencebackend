@@ -1,6 +1,7 @@
 package com.example.hotel.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.hotel.entity.Client;
 import com.example.hotel.service.ClientService;
@@ -31,6 +32,11 @@ public class ClientController {
 
     @PostMapping
     public Client create(@RequestBody Client client) { return service.create(client); }
+
+    @PostMapping("/login")
+    public Client login(@RequestBody Map<String, String> body) {
+        return service.login(body.get("email"), body.get("password"));
+    }
 
     @PutMapping("/{id}")
     public Client update(@PathVariable Long id, @RequestBody Client client) { return service.update(id, client); }

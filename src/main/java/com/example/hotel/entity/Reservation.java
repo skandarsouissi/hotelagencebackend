@@ -3,6 +3,8 @@ package com.example.hotel.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +19,9 @@ public class Reservation {
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private Double totalPrice;
+
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status = ReservationStatus.PENDING;
 
     @ManyToOne
     private Hotel hotel;
@@ -70,5 +75,13 @@ public class Reservation {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public ReservationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ReservationStatus status) {
+        this.status = status;
     }
 }

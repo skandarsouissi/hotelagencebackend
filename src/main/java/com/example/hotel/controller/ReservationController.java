@@ -26,6 +26,9 @@ public class ReservationController {
     @GetMapping
     public List<Reservation> findAll() { return service.findAll(); }
 
+    @GetMapping("/agent/{agentId}")
+    public List<Reservation> findByAgent(@PathVariable Long agentId) { return service.findByAgentId(agentId); }
+
     @GetMapping("/{id}")
     public Reservation findById(@PathVariable Long id) { return service.findById(id); }
 
@@ -34,6 +37,12 @@ public class ReservationController {
 
     @PutMapping("/{id}")
     public Reservation update(@PathVariable Long id, @RequestBody Reservation reservation) { return service.update(id, reservation); }
+
+    @PutMapping("/{id}/validate")
+    public Reservation validate(@PathVariable Long id) { return service.validate(id); }
+
+    @PutMapping("/{id}/reject")
+    public Reservation reject(@PathVariable Long id) { return service.reject(id); }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) { service.delete(id); }
